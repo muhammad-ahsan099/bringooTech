@@ -7,7 +7,7 @@ import visibleEyeIcon from '../../../assets/visibleEyeIcon.png';
 import invisibleEyeIcon from '../../../assets/invisibleEyeIcon.png';
 import { UIActivityIndicator, } from 'react-native-indicators';
 const Login = ({ navigation }) => {
-    const [{ values, handleChange, handleClickShowPassword, email, setEmail, loginHandler, loading }] = UseLogin();
+    const [{ values, handleChange, handleClickShowPassword, email, setEmail, doLoginUser, loading }] = UseLogin();
     return (
         <View style={style.loginContainer}>
             <StatusBar backgroundColor='#454545' />
@@ -25,16 +25,16 @@ const Login = ({ navigation }) => {
                             style={style.input}
                             value={email}
                             placeholder="Email"
-                            keyboardType="Text"
+                            // keyboardType="Text"
                             onChangeText={(email) => setEmail(email)}
                         />
                         <View style={style.passwordInputContainer}>
                             <TextInput
                                 style={style.passwordInput}
                                 placeholder="Password"
-                                keyboardType="Text"
                                 secureTextEntry={values.showPassword ? false : true}
-                                onChangeText={(password) => handleChange(password)}
+                                // value={values.password}
+                                onChangeText={(text) => handleChange(text)}
                             />
                             <TouchableOpacity style={style.eyeIconContainer} onPress={handleClickShowPassword}>
                                 {values.showPassword ?
@@ -51,7 +51,7 @@ const Login = ({ navigation }) => {
                         </TouchableOpacity>
                         {
                             !loading ?
-                                <TouchableOpacity onPress={() => loginHandler(navigation)} style={style.loginBtn}>
+                                <TouchableOpacity onPress={() => doLoginUser()} style={style.loginBtn}>
                                     <Text style={style.loginText}>
                                         Login
                                     </Text>

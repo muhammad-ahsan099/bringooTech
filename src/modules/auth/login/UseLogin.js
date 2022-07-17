@@ -1,13 +1,21 @@
 import { useState } from "react";
+import { doLogin } from "../../../redux/actions/AuthAction";
+import { useDispatch } from "react-redux";
+import { Alert } from "react-native";
+
 const UseLogin = () => {
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
+    const dispatch = useDispatch()
     const [values, setValues] = useState({
         password: '',
         showPassword: false,
     });
-    const handleChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
+    const handleChange = (text) => {
+        setValues({
+            ...values,
+            password: text
+        })
     };
     const handleClickShowPassword = () => {
         setValues({
@@ -15,14 +23,21 @@ const UseLogin = () => {
             showPassword: !values.showPassword,
         });
     };
-    const loginHandler = (navigation) => {
-        setLoading(true);
-        setTimeout(() => {
-            setLoading(false);
-            navigation.replace('dashboard')
-        }, 1500)
+
+    const doLoginUser = () => {
+        if (email === '') {
+            Alert.alert('Email should not empty!')
+        }
+        else if (values.password === '') {
+            Alert.alert('Password should not empty!')
+        }
+        else {
+            dispatch(doLogin(email, values.password))
+        }
     }
-    return [{ values, handleChange, handleClickShowPassword, email, setEmail, loginHandler, loading }]
+
+
+    return [{ values, handleChange, handleClickShowPassword, email, setEmail, doLoginUser, loading }]
 }
 
 export default UseLogin;

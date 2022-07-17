@@ -6,17 +6,20 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import type { Node } from 'react';
+import React, { useState , useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import StackNavigation from './src/navigation/StackNavigation';
+import { Provider } from 'react-redux';
+import store from './src/config/Store';
 import { LogBox } from 'react-native';
 LogBox.ignoreAllLogs();
-const App: () => Node = () => {
+const App = () => {
   return (
-    <NavigationContainer>
-      <StackNavigation />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <StackNavigation />
+      </NavigationContainer>
+    </Provider>
   );
 };
 

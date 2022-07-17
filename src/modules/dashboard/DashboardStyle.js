@@ -3,7 +3,8 @@ import { RFValue } from "react-native-responsive-fontsize";
 const { width, height } = Dimensions.get('window');
 export const style = StyleSheet.create({
     mainPageContainer: {
-        flex: 1,
+        width: '100%',
+        height: '100%',
         backgroundColor: '#454545',
     },
     whiteHeader: {
@@ -19,7 +20,6 @@ export const style = StyleSheet.create({
     shopName: {
         fontSize: RFValue(16),
         color: '#ffa500',
-        textTransform: 'uppercase',
         fontWeight: 'bold',
     },
     goldImage: {
@@ -39,18 +39,18 @@ export const style = StyleSheet.create({
         resizeMode: 'cover',
         marginTop: width > 400 ? 0 : 10,
     },
-    goldRatesContainersRow: {
+    goldRatesContainersRow: convert =>({
         width: '100%',
         paddingHorizontal: 20,
         justifyContent: 'space-between',
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: convert ? 'row-reverse' : 'row',
         marginTop: 20,
-    },
+    }),
     smallOrangeContainer: {
         width: '20%',
         height: width > 400 ? 110 : 90,
-        padding: 10,
+        padding: width > 600 ? 10 : 0,
         backgroundColor: '#e78c20',
         display: "flex",
         flexDirection: "column",
@@ -76,7 +76,7 @@ export const style = StyleSheet.create({
     smallGreenContainer: {
         width: '20%',
         height: width > 400 ? 110 : 90,
-        padding: 10,
+        padding: width > 600 ? 10 : 0,
         backgroundColor: '#8da32e',
         display: "flex",
         flexDirection: "column",
@@ -92,12 +92,12 @@ export const style = StyleSheet.create({
         borderWidth: 3,
         borderStyle: 'solid',
     },
-    rateRow: {
+    rateRow: convert => ({
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: convert ? 'row-reverse' : 'row',
         justifyContent: 'space-between',
         padding: 10,
-    },
+    }),
     tableText: {
         fontSize: RFValue(14),
         fontWeight: '600',
@@ -126,15 +126,17 @@ export const style = StyleSheet.create({
         color: 'white',
         fontSize: RFValue(16),
         fontWeight: "bold",
+        marginTop: 6
     },
-    chargesBoxesRow: {
+    chargesBoxesRow: convert => ({
         display: 'flex',
-        flexDirection: 'row',
+        // flexDirection: 'row',
+        flexDirection: convert ? 'row-reverse' : 'row',
         width: '100%',
         flexWrap: 'wrap',
         paddingHorizontal: 20,
         justifyContent: 'space-between',
-    },
+    }),
     countryNameAndChargesContainer: {
         width: '23%',
         backgroundColor: "#d9b621",
@@ -151,7 +153,13 @@ export const style = StyleSheet.create({
     },
     charges: {
         textTransform: 'uppercase',
-        fontSize: RFValue(width > 400 ? 16 : 11),
+        fontSize: RFValue(width > 400 ? 16 : 12),
+        fontWeight: '500',
+        textAlign: "center",
+    },
+    ArabicCharges: {
+        textTransform: 'uppercase',
+        fontSize: RFValue(width > 400 ? 18 : 14),
         fontWeight: '500',
         textAlign: "center",
     },
