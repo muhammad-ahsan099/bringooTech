@@ -6,7 +6,7 @@ import logout from '../../assets/logout.png';
 import UseDashboard from './UseDashboard';
 import MyStatusBar from '../focusAwareStatuseBar/index';
 const Dashboard = () => {
-    const [{ loading, KitcoRate, OMRRates, tableData, CountryInfo, time, ArabicConvert, convert, setConvert, logoutHandler , conversionHandler }] = UseDashboard();
+    const [{  engName ,araName ,loading, KitcoRate, OMRRates, tableData, CountryInfo, time, ArabicConvert, convert, setConvert, logoutHandler, conversionHandler }] = UseDashboard();
 
     return (
         <View style={style.mainPageContainer}>
@@ -17,7 +17,12 @@ const Dashboard = () => {
             <View style={style.whiteHeader}>
                 <View>
                     <Text style={style.shopName}>
-                        Bringoo Tech
+                        {
+                            engName && araName ?
+                                convert ? araName : engName
+                                :
+                                'Bringoo Tech'
+                        }
                     </Text>
                 </View>
                 <View>
@@ -38,8 +43,8 @@ const Dashboard = () => {
                         <Text style={style.quantity}>Oz.</Text>
                     </View>
                     <View style={style.smallGreenContainer}>
-                        <Text style={style.currencyName}>{convert ? ArabicConvert?.OmanArabic: 'OMR'}</Text>
-                        <Text style={style.price}>{ convert ? conversionHandler(OMRRates?.toFixed(1)?.toString()) : OMRRates?.toFixed(1)}</Text>
+                        <Text style={style.currencyName}>{convert ? ArabicConvert?.OmanArabic : 'OMR'}</Text>
+                        <Text style={style.price}>{convert ? conversionHandler(OMRRates?.toFixed(1)?.toString()) : OMRRates?.toFixed(1)}</Text>
                         <Text style={style.quantity}>{ArabicConvert?.tola}</Text>
                     </View>
                     <View style={style.bigWhiteContainer}>
@@ -49,10 +54,10 @@ const Dashboard = () => {
                                     <View key={ind}>
                                         <View style={style.rateRow(convert)}>
                                             <Text style={style.tableText}>
-                                                {convert ? conversionHandler(item?.karatQntty?.toString()) + `\n ع` : item?.karatQntty + `\nKarat` }
+                                                {convert ? conversionHandler(item?.karatQntty?.toString()) + `\n ع` : item?.karatQntty + `\nKarat`}
                                             </Text>
                                             <Text style={style.tableText}>{convert ? conversionHandler(item?.price?.toFixed(3)?.toString()) : item?.price?.toFixed(3)}</Text>
-                                            <Text style={style.tableText}>{convert ? ArabicConvert?.OmanArabic: 'OMR'}</Text>
+                                            <Text style={style.tableText}>{convert ? ArabicConvert?.OmanArabic : 'OMR'}</Text>
                                         </View>
                                         <View style={style.divider} />
                                     </View>

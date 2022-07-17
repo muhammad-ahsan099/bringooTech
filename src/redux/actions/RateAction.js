@@ -1,6 +1,7 @@
 import { GET_RATE  , GET_COUNTARY_INFO} from "../type/Type"
 import axios from "axios";
 import { endPoint } from '../endPoint/EndPoint';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const doGetRate = (setLoading) => async (dispatch) => {
     try {
@@ -13,7 +14,8 @@ export const doGetRate = (setLoading) => async (dispatch) => {
                 'password': '2A98D725-24B6-4E74-AD06-D5A50026BABC'
             }
         };
-        const res = await axios.get(`${endPoint}Home/GetkaratCode?UserId=01307e0a-0858-4668-ae36-8c8bdae1196f`, axiosConfig);
+        const token = await AsyncStorage.getItem('loginKey');
+        const res = await axios.get(`${endPoint}Home/GetkaratCode?UserId=${token}`, axiosConfig);
         let rate = res.data
         if (rate) {
             dispatch({
@@ -41,7 +43,8 @@ export const doGetCountaryInfo = (setLoading) => async (dispatch) => {
                 'password': '2A98D725-24B6-4E74-AD06-D5A50026BABC'
             }
         };
-        const res = await axios.get(`${endPoint}Home/MakingInfo?UserId=01307e0a-0858-4668-ae36-8c8bdae1196f`, axiosConfig);
+        const token = await AsyncStorage.getItem('loginKey');
+        const res = await axios.get(`${endPoint}Home/MakingInfo?UserId=${token}`, axiosConfig);
         let countryInfo = res.data
         // console.log('Countary info' , countryInfo.Data);
         if (countryInfo) {

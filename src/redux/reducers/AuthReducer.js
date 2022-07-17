@@ -8,13 +8,12 @@ let initialState = {
 }
 
 function AuthReducer(state = initialState, action) {
-
     switch (action.type) {
         case LOGIN: {
             return {
                 ...state,
                 isUserLoggedIn: true,
-                // users: action.payload.data.Data
+                users: action.payload.Data
             };
         }
 

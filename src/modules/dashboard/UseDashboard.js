@@ -3,15 +3,29 @@ import { doLogout } from "../../redux/actions/AuthAction";
 import { useDispatch } from "react-redux";
 import { doGetRate, doGetCountaryInfo } from "../../redux/actions/RateAction";
 import { useSelector } from "react-redux";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const UseDashboard = () => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false)
     const [convert, setConvert] = useState(false)
+    const [engName, setEngName] = useState('')
+    const [araName, setAraName] = useState('')
+
+
 
     const [time, setTime] = useState(new Date().toLocaleString())
     const Rate = useSelector(state => state.RateReducer.rate);
     const Info = useSelector(state => state.RateReducer.countryInfo);
+
+    const GetUserData = async ()=> {
+        const EnglishName = await AsyncStorage.getItem('nameEng');
+        const ArabicName = await AsyncStorage.getItem('nameAra');
+        setEngName(EnglishName)
+        setAraName(ArabicName)
+    } 
+
     const CountryInfo = Info?.Data;
     const KitcoRate = Rate?.Data?.KitcoRate;
     const Premimu = Rate?.Data?.Premimu;
@@ -36,6 +50,7 @@ const UseDashboard = () => {
     useEffect(() => {
         dispatch(doGetRate(setLoading));
         dispatch(doGetCountaryInfo(setLoading))
+        GetUserData();
     }, [time])
 
     // OMR rate
@@ -76,7 +91,7 @@ const UseDashboard = () => {
     }
 
 
-    return [{ loading, KitcoRate, OMRRates, tableData, CountryInfo, time, ArabicConvert, convert, setConvert , logoutHandler , conversionHandler }]
+    return [{ engName ,araName,loading, KitcoRate, OMRRates, tableData, CountryInfo, time, ArabicConvert, convert, setConvert , logoutHandler , conversionHandler }]
 }
 
 export default UseDashboard;

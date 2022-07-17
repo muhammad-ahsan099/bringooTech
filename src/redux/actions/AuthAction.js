@@ -20,12 +20,15 @@ export const doLogin = (email, password) => async (dispatch) => {
     if (userCredential.data.IsSuccess) {
       try {
         await AsyncStorage.setItem('loginKey', userCredential?.data?.Data?.Id)
+        await AsyncStorage.setItem('nameEng', userCredential?.data?.Data?.EnglishName)
+        await AsyncStorage.setItem('nameAra', userCredential?.data?.Data?.ArabicName)
+
       } catch (e) {
         console.log('Error', e);
       }
       dispatch({
         type: LOGIN,
-        payload: userCredential,
+        payload: userCredential.data,
       });
     }
     else {
