@@ -16,7 +16,7 @@ export const style = StyleSheet.create({
     whiteBgContainer: {
         backgroundColor: 'white',
         height: 500,
-        width: width > 400 ? '50%' : '90%',
+        width: width > 600 ? '50%' : '90%',
         borderRadius: 10,
     },
     logoContainer: {
@@ -52,6 +52,7 @@ export const style = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: "rgb(237,239,243)",
         width: '100%',
+        color: 'black'
     },
     passwordInput: {
         height: 60,
@@ -63,6 +64,7 @@ export const style = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: "rgb(237,239,243)",
         width: '100%',
+        color: 'black'
     },
     passwordInputContainer: {
         width: '100%',

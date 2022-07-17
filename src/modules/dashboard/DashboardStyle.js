@@ -101,6 +101,7 @@ export const style = StyleSheet.create({
     tableText: {
         fontSize: RFValue(14),
         fontWeight: '600',
+        color: '#000'
     },
     divider: {
         width: '100%',
@@ -156,11 +157,13 @@ export const style = StyleSheet.create({
         fontSize: RFValue(width > 400 ? 16 : 12),
         fontWeight: '500',
         textAlign: "center",
+        color: 'black'
     },
     ArabicCharges: {
         textTransform: 'uppercase',
         fontSize: RFValue(width > 400 ? 18 : 14),
         fontWeight: '500',
         textAlign: "center",
+        color: 'black'
     },
 });
