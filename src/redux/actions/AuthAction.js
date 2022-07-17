@@ -44,6 +44,9 @@ export const doLogout = () => async (dispatch) => {
   try {
 
     await AsyncStorage.removeItem('loginKey')
+    await AsyncStorage.removeItem('nameEng')
+    await AsyncStorage.removeItem('nameAra')
+
     dispatch({
       type: LOGOUT,
       payload: null,
