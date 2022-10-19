@@ -44,11 +44,11 @@ const Login = ({ navigation }) => {
                                 }
                             </TouchableOpacity>
                         </View>
-                        <TouchableOpacity style={style.forgotPasswordBtn}>
+                        {/* <TouchableOpacity style={style.forgotPasswordBtn}>
                             <Text style={style.forgotPasswordText}>
                                 Forgot Password?
                             </Text>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                         {
                             !loading ?
                                 <TouchableOpacity onPress={() => doLoginUser()} style={style.loginBtn}>
@@ -62,12 +62,12 @@ const Login = ({ navigation }) => {
                                 </View>
 
                         }
-                        <View style={style.lastContainer}>
+                        {/* <View style={style.lastContainer}>
                             <Text>
                                 Don't have an account?
                             </Text>
                             <TouchableOpacity ><Text style={style.signUpText}>Sign Up</Text></TouchableOpacity>
-                        </View>
+                        </View> */}
                     </View>
                 </View>
             </ScrollView>
